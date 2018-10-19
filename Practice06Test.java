@@ -1,3 +1,4 @@
+import java.io.*;
 
 public class Practice06Test {
 	
@@ -27,8 +28,11 @@ public class Practice06Test {
 	public boolean isPalindrome(String item) {
 		clearData();
 		for (int i = 0; i < item.length(); i++) {
-			stack.push(item.substring(i, i+1));
-			queue.enqueue(item.substring(i, i+1));
+			String str = item.substring(i, i+1);
+			if (str.matches("[a-zA-Z0-9]+")) { // only consider alphanumeric values
+				stack.push(str.toLowerCase()); // changed to just consider the lower case version
+				queue.enqueue(str.toLowerCase());
+			}
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
